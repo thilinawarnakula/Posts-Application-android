@@ -56,4 +56,14 @@ public class MasterDataService {
                 getCommentsCount(postId);
     }
 
+    public List<Posts> getPostByTitle(String title){
+        return App.getInstance().getDatabseInstance().postDao().
+                getPostFromTitle(title);
+    }
+
+    public Users getUserData(int userId){
+        return App.getInstance().getDatabseInstance().userDao().
+                getUser(userId);
+    }
+
 }

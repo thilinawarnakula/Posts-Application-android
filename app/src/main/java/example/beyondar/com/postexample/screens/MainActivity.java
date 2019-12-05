@@ -3,7 +3,6 @@ package example.beyondar.com.postexample.screens;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -14,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import example.beyondar.com.postexample.R;
 import example.beyondar.com.postexample.adapter.PostsListAdapter;
 import example.beyondar.com.postexample.adapter.RecyclerTouchListener;
@@ -35,10 +35,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements PostsListAdapter.PostUserRecoardChangeListner{
+public class MainActivity extends AppCompatActivity implements PostsListAdapter.PostUserRecoardChangeListner {
 
-    @BindView(R.id.search_view)
-    SearchView searchView;
     @BindView(R.id.post_list_recycle_view)
     RecyclerView postListRecycleView;
 
@@ -47,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements PostsListAdapter.
     private List<Users> usersList;
 
     private List<Posts> postsDataList;
+
+    private PostsListAdapter postsListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements PostsListAdapter.
         if (masterData.size() < 1) {
             setUpData();
         }
-        setUpViews();
 
         postListRecycleView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(),
                 postListRecycleView, new RecyclerTouchListener.ClickListener() {
@@ -94,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements PostsListAdapter.
 
     private void setListRecyclerView() {
 
-        PostsListAdapter postsListAdapter = new PostsListAdapter(MainActivity.this, postsDataList,this);
+        postsListAdapter = new PostsListAdapter(MainActivity.this, postsDataList, this);
         postListRecycleView.setAdapter(postsListAdapter);
 
         LinearLayoutManager linearLayoutManagerEstatesList = new LinearLayoutManager(MainActivity.this);
@@ -103,24 +102,6 @@ public class MainActivity extends AppCompatActivity implements PostsListAdapter.
 
     }
 
-    private void setUpViews() {
-        searchView.setQueryHint(getResources().getString(R.string.search_post));
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                loadSearchedPost(s);
-                return true;
-            }
-        });
-    }
-
-    private void loadSearchedPost(String postName) {
-    }
 
     private void setUpData() {
         downloadMasterDataPosts(true);
@@ -319,6 +300,13 @@ public class MainActivity extends AppCompatActivity implements PostsListAdapter.
         int postID = resultsItem.getId();
         Intent myIntent = new Intent(MainActivity.this, UserDetailsActivity.class);
         myIntent.putExtra("postID", postID);
+        startActivity(myIntent);
+        finish();
+    }
+
+    @OnClick(R.id.add_post)
+    public void onViewClicked() {
+        Intent myIntent = new Intent(MainActivity.this, AddPostActivity.class);
         startActivity(myIntent);
         finish();
     }

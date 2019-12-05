@@ -5,5 +5,7 @@
     <string name="comments_download">Comments are successfully downloaded</string>
     <string name="users_download">Users are successfully downloaded</string>
     <string name="search_post">Search Post</string>
+    <string name="add_post_warning">Please type the Title and the Body of the Post</string>
+    <string name="new_post_added">Post Added</string>
 
 </resources>

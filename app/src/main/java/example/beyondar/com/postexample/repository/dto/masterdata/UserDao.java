@@ -15,4 +15,7 @@ public interface UserDao {
 
     @Query("SELECT * FROM Users WHERE userId=:userId")
     Users getUserFromPost(int userId);
+
+    @Query("SELECT * FROM Users WHERE userId=:userId")
+    Users getUser(int userId);
 }

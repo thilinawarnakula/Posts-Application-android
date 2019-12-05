@@ -7,22 +7,24 @@
     tools:context=".screens.MainActivity">
 
 
-    <SearchView
-        android:id="@+id/search_view"
+    <Button
+        android:id="@+id/add_post"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Add Post"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:textSize="20dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/post_list_recycle_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_view"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/add_post"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="10dp">
 
     </androidx.recyclerview.widget.RecyclerView>

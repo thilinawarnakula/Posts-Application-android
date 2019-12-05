@@ -21,4 +21,10 @@ public interface PostDao {
 
     @Query("SELECT * FROM Posts WHERE id=:postId")
     Posts getUserFromPost(int postId);
+
+    @Query("SELECT p.* " +
+            "FROM Posts p " +
+            "WHERE p.title LIKE :title "
+    )
+    List<Posts> getPostFromTitle(String title);
 }
