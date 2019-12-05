@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">User Post</string>
+    <string name="action_settings">Settings</string>
+    <string name="posts_download">Posts are successfully downloaded</string>
+    <string name="comments_download">Comments are successfully downloaded</string>
+    <string name="users_download">Users are successfully downloaded</string>
+    <string name="search_post">Search Post</string>
+
+</resources>
